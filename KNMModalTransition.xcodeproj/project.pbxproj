@@ -7,33 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0564DEA919F01BC0003225DD /* ios_modal_transitions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0564DEA819F01BC0003225DD /* ios_modal_transitions.h */; };
-		0564DEAB19F01BC0003225DD /* ios_modal_transitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEAA19F01BC0003225DD /* ios_modal_transitions.m */; };
 		0564DEC519F01C93003225DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEC419F01C93003225DD /* main.m */; };
 		0564DEC819F01C93003225DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEC719F01C93003225DD /* AppDelegate.m */; };
 		0564DECB19F01C93003225DD /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DECA19F01C93003225DD /* MasterViewController.m */; };
 		0564DED019F01C93003225DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0564DECF19F01C93003225DD /* Images.xcassets */; };
 		0564DEE819F01CF6003225DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0564DEE719F01CF6003225DD /* Main.storyboard */; };
 		0564DEEB19F01DDD003225DD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEEA19F01DDD003225DD /* DetailViewController.m */; };
+		0564DEF219F029D1003225DD /* libmodaltransition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0564DEA519F01BC0003225DD /* libmodaltransition.a */; };
+		0564DEF519F02A53003225DD /* KNMModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEED19F02618003225DD /* KNMModalTransition.m */; };
+		0564DEF719F02A6E003225DD /* KNMModalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0564DEEC19F02618003225DD /* KNMModalTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0564DEFA19F02B76003225DD /* SpringTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEF919F02B76003225DD /* SpringTransition.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0564DEA319F01BC0003225DD /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				0564DEA919F01BC0003225DD /* ios_modal_transitions.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
+/* Begin PBXContainerItemProxy section */
+		0564DEF319F029D5003225DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0564DE9D19F01BC0003225DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0564DEA419F01BC0003225DD;
+			remoteInfo = KNMModalTransition;
 		};
-/* End PBXCopyFilesBuildPhase section */
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0564DEA519F01BC0003225DD /* libKNMModalTransitions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKNMModalTransitions.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0564DEA819F01BC0003225DD /* ios_modal_transitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_modal_transitions.h; sourceTree = "<group>"; };
-		0564DEAA19F01BC0003225DD /* ios_modal_transitions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_modal_transitions.m; sourceTree = "<group>"; };
+		0564DEA519F01BC0003225DD /* libmodaltransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmodaltransition.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0564DEC019F01C92003225DD /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0564DEC319F01C93003225DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0564DEC419F01C93003225DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,6 +42,10 @@
 		0564DEE719F01CF6003225DD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0564DEE919F01DDD003225DD /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		0564DEEA19F01DDD003225DD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		0564DEEC19F02618003225DD /* KNMModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNMModalTransition.h; sourceTree = "<group>"; };
+		0564DEED19F02618003225DD /* KNMModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNMModalTransition.m; sourceTree = "<group>"; };
+		0564DEF819F02B76003225DD /* SpringTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringTransition.h; sourceTree = "<group>"; };
+		0564DEF919F02B76003225DD /* SpringTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0564DEF219F029D1003225DD /* libmodaltransition.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +79,7 @@
 		0564DEA619F01BC0003225DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0564DEA519F01BC0003225DD /* libKNMModalTransitions.a */,
+				0564DEA519F01BC0003225DD /* libmodaltransition.a */,
 				0564DEC019F01C92003225DD /* SampleApp.app */,
 			);
 			name = Products;
@@ -86,8 +88,8 @@
 		0564DEA719F01BC0003225DD /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				0564DEA819F01BC0003225DD /* ios_modal_transitions.h */,
-				0564DEAA19F01BC0003225DD /* ios_modal_transitions.m */,
+				0564DEEC19F02618003225DD /* KNMModalTransition.h */,
+				0564DEED19F02618003225DD /* KNMModalTransition.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -102,6 +104,8 @@
 				0564DECA19F01C93003225DD /* MasterViewController.m */,
 				0564DEE919F01DDD003225DD /* DetailViewController.h */,
 				0564DEEA19F01DDD003225DD /* DetailViewController.m */,
+				0564DEF819F02B76003225DD /* SpringTransition.h */,
+				0564DEF919F02B76003225DD /* SpringTransition.m */,
 				0564DECF19F01C93003225DD /* Images.xcassets */,
 				0564DEC219F01C93003225DD /* Supporting Files */,
 			);
@@ -119,22 +123,33 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		0564DEF619F02A68003225DD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0564DEF719F02A6E003225DD /* KNMModalTransition.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		0564DEA419F01BC0003225DD /* KNMModalTransitions */ = {
+		0564DEA419F01BC0003225DD /* KNMModalTransition */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0564DEB619F01BC0003225DD /* Build configuration list for PBXNativeTarget "KNMModalTransitions" */;
+			buildConfigurationList = 0564DEB619F01BC0003225DD /* Build configuration list for PBXNativeTarget "KNMModalTransition" */;
 			buildPhases = (
 				0564DEA119F01BC0003225DD /* Sources */,
 				0564DEA219F01BC0003225DD /* Frameworks */,
-				0564DEA319F01BC0003225DD /* CopyFiles */,
+				0564DEF619F02A68003225DD /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = KNMModalTransitions;
+			name = KNMModalTransition;
 			productName = "ios-modal-transitions";
-			productReference = 0564DEA519F01BC0003225DD /* libKNMModalTransitions.a */;
+			productReference = 0564DEA519F01BC0003225DD /* libmodaltransition.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		0564DEBF19F01C92003225DD /* SampleApp */ = {
@@ -148,6 +163,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0564DEF419F029D5003225DD /* PBXTargetDependency */,
 			);
 			name = SampleApp;
 			productName = SampleApp;
@@ -171,7 +187,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0564DEA019F01BC0003225DD /* Build configuration list for PBXProject "KNMModalTransitions" */;
+			buildConfigurationList = 0564DEA019F01BC0003225DD /* Build configuration list for PBXProject "KNMModalTransition" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -184,7 +200,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0564DEA419F01BC0003225DD /* KNMModalTransitions */,
+				0564DEA419F01BC0003225DD /* KNMModalTransition */,
 				0564DEBF19F01C92003225DD /* SampleApp */,
 			);
 		};
@@ -207,7 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0564DEAB19F01BC0003225DD /* ios_modal_transitions.m in Sources */,
+				0564DEF519F02A53003225DD /* KNMModalTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,12 +233,21 @@
 			files = (
 				0564DECB19F01C93003225DD /* MasterViewController.m in Sources */,
 				0564DEC819F01C93003225DD /* AppDelegate.m in Sources */,
+				0564DEFA19F02B76003225DD /* SpringTransition.m in Sources */,
 				0564DEC519F01C93003225DD /* main.m in Sources */,
 				0564DEEB19F01DDD003225DD /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0564DEF419F029D5003225DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0564DEA419F01BC0003225DD /* KNMModalTransition */;
+			targetProxy = 0564DEF319F029D5003225DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0564DEB419F01BC0003225DD /* Debug */ = {
@@ -252,6 +277,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -286,6 +312,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -303,7 +330,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = KNMModalTransitions;
+				PRODUCT_NAME = modaltransition;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -312,7 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = KNMModalTransitions;
+				PRODUCT_NAME = modaltransition;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -352,7 +379,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0564DEA019F01BC0003225DD /* Build configuration list for PBXProject "KNMModalTransitions" */ = {
+		0564DEA019F01BC0003225DD /* Build configuration list for PBXProject "KNMModalTransition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0564DEB419F01BC0003225DD /* Debug */,
@@ -361,7 +388,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0564DEB619F01BC0003225DD /* Build configuration list for PBXNativeTarget "KNMModalTransitions" */ = {
+		0564DEB619F01BC0003225DD /* Build configuration list for PBXNativeTarget "KNMModalTransition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0564DEB719F01BC0003225DD /* Debug */,

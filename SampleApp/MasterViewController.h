@@ -11,10 +11,9 @@
 
 @interface MasterViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIButton *presentDetailButton;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *detailOrientationSwitch;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *presentationStyleSwitch;
 
-- (IBAction)presentDetail:(id)sender;
+- (IBAction)presentDetail:(UIButton *)sender;
 
 @end
-

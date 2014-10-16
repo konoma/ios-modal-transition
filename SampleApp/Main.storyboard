@@ -3,7 +3,6 @@
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master View Controller-->
@@ -33,14 +32,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presentation Style" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7I-xD-7oj">
-                                <rect key="frame" x="230" y="135" width="139.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ow-fB-2Nc">
-                                <rect key="frame" x="259" y="285" width="82" height="30"/>
+                                <rect key="frame" x="225" y="518" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="A5U-ed-j20"/>
+                                    <constraint firstAttribute="width" constant="150" id="U83-1d-NPu"/>
+                                </constraints>
                                 <state key="normal" title="Show Detail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -48,36 +45,22 @@
                                     <action selector="presentDetail:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="alj-LT-gUX"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wof-nh-9dE">
-                                <rect key="frame" x="173" y="163" width="254" height="29"/>
-                                <segments>
-                                    <segment title="Full Screen"/>
-                                    <segment title="Page Sheet"/>
-                                    <segment title="Form Sheet"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="jGZ-mT-pHR" secondAttribute="centerX" id="5l9-4P-DpN"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="jGZ-mT-pHR" secondAttribute="trailing" id="EgJ-TT-6av"/>
-                            <constraint firstItem="jGZ-mT-pHR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Gu1-jb-fta"/>
                             <constraint firstItem="jGZ-mT-pHR" firstAttribute="top" secondItem="NVp-ae-WkY" secondAttribute="bottom" constant="8" id="NRr-BT-tU1"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="wof-nh-9dE" secondAttribute="trailing" id="S4c-KI-fVT"/>
-                            <constraint firstAttribute="centerY" secondItem="7ow-fB-2Nc" secondAttribute="centerY" id="TzP-xA-BNC"/>
-                            <constraint firstItem="wof-nh-9dE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="eW7-iL-NEC"/>
-                            <constraint firstItem="wof-nh-9dE" firstAttribute="top" secondItem="g7I-xD-7oj" secondAttribute="bottom" constant="8" id="hT0-hR-EQ1"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="7ow-fB-2Nc" secondAttribute="bottom" constant="32" id="iMy-SM-I8R"/>
                             <constraint firstItem="NVp-ae-WkY" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="43" id="l4Q-0D-Ps9"/>
                             <constraint firstAttribute="centerX" secondItem="NVp-ae-WkY" secondAttribute="centerX" constant="-0.5" id="mz7-4t-eVt"/>
-                            <constraint firstAttribute="centerX" secondItem="g7I-xD-7oj" secondAttribute="centerX" id="rbf-j0-JaK"/>
-                            <constraint firstItem="g7I-xD-7oj" firstAttribute="top" secondItem="jGZ-mT-pHR" secondAttribute="bottom" constant="16" id="wYW-xA-ccc"/>
+                            <constraint firstItem="jGZ-mT-pHR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="pZ2-zA-5Kf"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jGZ-mT-pHR" secondAttribute="trailing" constant="16" id="uOA-v3-3J3"/>
                             <constraint firstAttribute="centerX" secondItem="7ow-fB-2Nc" secondAttribute="centerX" id="wgH-aC-YSi"/>
-                            <constraint firstAttribute="centerX" secondItem="wof-nh-9dE" secondAttribute="centerX" id="y1p-ib-VgO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="detailOrientationSwitch" destination="jGZ-mT-pHR" id="a7W-UN-Tcl"/>
-                        <outlet property="presentationStyleSwitch" destination="wof-nh-9dE" id="X9f-zZ-w82"/>
+                        <outlet property="presentDetailButton" destination="7ow-fB-2Nc" id="bzc-cb-7Ho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

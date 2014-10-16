@@ -9,19 +9,36 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 
+#import "SpringTransition.h"
+
 
 @implementation MasterViewController
 
-- (void)presentDetail:(id)sender {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.presentDetailButton.layer.cornerRadius = 3.0f;
+    self.presentDetailButton.layer.borderColor = self.presentDetailButton.tintColor.CGColor;
+    self.presentDetailButton.layer.borderWidth = 1.0f;
+}
+
+- (void)presentDetail:(UIButton *)sender
+{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     DetailViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     controller.preferredInterfaceOrientationForPresentation = [self preferredDetailOrientation];
-    controller.modalPresentationStyle = [self detailPresentationStyle];
+    
+    SpringTransition *transition = [[SpringTransition alloc] initWithDuration:1.0];
+    transition.initialRect = sender.frame;
+    controller.knm_modalTransition = transition;
+    
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-- (UIInterfaceOrientation)preferredDetailOrientation {
+- (UIInterfaceOrientation)preferredDetailOrientation
+{
     switch (self.detailOrientationSwitch.selectedSegmentIndex) {
         case 0: return UIInterfaceOrientationPortrait;
         case 1: return UIInterfaceOrientationPortraitUpsideDown;
@@ -30,17 +47,6 @@
         
         default:
             return UIInterfaceOrientationPortrait;
-    }
-}
-
-- (UIModalPresentationStyle)detailPresentationStyle {
-    switch (self.presentationStyleSwitch.selectedSegmentIndex) {
-        case 0: return UIModalPresentationFullScreen;
-        case 1: return UIModalPresentationPageSheet;
-        case 2: return UIModalPresentationFormSheet;
-            
-        default:
-            return UIModalPresentationFullScreen;
     }
 }
 

@@ -15,11 +15,13 @@
 
 @synthesize preferredInterfaceOrientationForPresentation = _preferredInterfaceOrientationForPresentation;
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
     return _preferredInterfaceOrientationForPresentation;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (NSUInteger)supportedInterfaceOrientations
+{
     return (UIInterfaceOrientationIsLandscape(self.preferredInterfaceOrientationForPresentation)
             ? UIInterfaceOrientationMaskLandscape
             : (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown));
@@ -28,7 +30,8 @@
 
 #pragma mark - Actions
 
-- (void)close:(id)sender {
+- (void)close:(id)sender
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
