@@ -26,7 +26,6 @@
 @property (nonatomic, readonly, getter = isDismissing) BOOL dismissing;
 
 @property (nonatomic, readonly, weak) UIView *transitionContainerView;
-@property (nonatomic, readonly) CGAffineTransform initialTransform;
 @property (nonatomic, readonly) CGAffineTransform finalTransform;
 @property (nonatomic, readonly) CGPoint finalCenter;
 @property (nonatomic, readonly) CGRect finalBounds;

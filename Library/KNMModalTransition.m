@@ -27,7 +27,6 @@ static CGPoint CenterOfRect(CGRect rect)
 @property (nonatomic, readwrite, getter = isDismissing) BOOL dismissing;
 
 @property (nonatomic, readwrite, weak) UIView *transitionContainerView;
-@property (nonatomic, readwrite) CGAffineTransform initialTransform;
 @property (nonatomic, readwrite) CGAffineTransform finalTransform;
 @property (nonatomic, readwrite) CGPoint finalCenter;
 @property (nonatomic, readwrite) CGRect finalBounds;
@@ -132,9 +131,6 @@ static CGPoint CenterOfRect(CGRect rect)
     
     [self setupViewControllerTransformsAndFrames];
     
-//    [self.transitionContainerView addSubview:self.presentingViewController.view];
-//    [self.transitionContainerView addSubview:self.presentedViewController.view];
-    
     [self prepareForTransition:[transitionContext isInteractive]];
     
     if ([self isDismissing]) {
@@ -143,6 +139,27 @@ static CGPoint CenterOfRect(CGRect rect)
     else {
         [self performTransition:[transitionContext isInteractive]];
     }
+}
+
+- (void)setupViewControllerTransformsAndFrames
+{
+    UIInterfaceOrientation targetOrientation = [self.presentedViewController preferredInterfaceOrientationForPresentation];
+    CGAffineTransform sourceTransform = self.presentingViewController.view.transform;
+    CGAffineTransform targetTransform = [self transformForInterfaceOrientation:targetOrientation];
+    
+    self.finalTransform = CGAffineTransformConcat(CGAffineTransformInvert(sourceTransform), targetTransform);
+    self.finalCenter = CenterOfRect(self.transitionContainerView.bounds);
+    self.finalBounds = self.presentedViewController.view.bounds;
+    
+    self.presentingViewController.view.transform = CGAffineTransformIdentity;
+    self.presentingViewController.view.frame = self.transitionContainerView.bounds;
+    [self.transitionContainerView addSubview:self.presentingViewController.view];
+    
+    self.presentedViewController.view.transform = CGAffineTransformIdentity;
+    self.presentedViewController.view.frame = self.transitionContainerView.bounds;
+    [self.transitionContainerView addSubview:self.presentedViewController.view];
+    
+    self.transitionContainerView.transform = sourceTransform;
 }
 
 
@@ -174,31 +191,13 @@ static CGPoint CenterOfRect(CGRect rect)
 
 #pragma mark - Rotation Helpers
 
-- (void)setupViewControllerTransformsAndFrames
-{
-    self.presentedViewController.view.transform = self.presentingViewController.view.transform;
-    
-    self.initialTransform = self.presentingViewController.view.transform;
-    self.finalTransform = CGAffineTransformIdentity;
-    
-    self.finalCenter = CenterOfRect(self.transitionContainerView.bounds);
-    self.finalBounds = self.transitionContainerView.bounds;
-}
-
 - (UIView *)transitionContainerViewForContext:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     UIView *containerView = [transitionContext containerView];
     
-    UILabel *transformView = [[UILabel alloc] init];
-    
-    transformView.text = @"Transform View";
-    transformView.textAlignment = NSTextAlignmentCenter;
-    
+    UIView *transformView = [[UIView alloc] init];
     transformView.center = CenterOfRect(containerView.bounds);
-    
     transformView.bounds = self.presentingViewController.view.bounds;
-    transformView.transform = self.presentingViewController.view.transform;
-    
     transformView.layer.borderColor = [UIColor redColor].CGColor;
     transformView.layer.borderWidth = 1.0f;
     [containerView addSubview:transformView];
