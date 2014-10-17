@@ -1,5 +1,5 @@
 //
-//  SpringTransition.h
+//  SpanTransition.h
 //  KNMModalTransition
 //
 //  Created by Markus Gasser on 16.10.14.
@@ -9,7 +9,7 @@
 #import "KNMModalTransition.h"
 
 
-@interface SpringTransition : KNMModalTransition
+@interface SpanTransition : KNMModalTransition
 
 @property (nonatomic, assign) CGRect initialRect;
 

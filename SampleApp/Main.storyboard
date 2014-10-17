@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Master View Controller-->
+        <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MasterViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,51 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jGZ-mT-pHR">
-                                <rect key="frame" x="16" y="91" width="568" height="29"/>
-                                <segments>
-                                    <segment title="Portrait"/>
-                                    <segment title="Portrait Upside Down"/>
-                                    <segment title="Left Landscape"/>
-                                    <segment title="Right Landscape"/>
-                                </segments>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail Orientation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVp-ae-WkY">
-                                <rect key="frame" x="234" y="63" width="133" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ow-fB-2Nc">
-                                <rect key="frame" x="225" y="518" width="150" height="50"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUk-J0-eak">
+                                <rect key="frame" x="0.0" y="350" width="600" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="A5U-ed-j20"/>
-                                    <constraint firstAttribute="width" constant="150" id="U83-1d-NPu"/>
+                                    <constraint firstAttribute="height" constant="250" id="yMk-p9-4v6"/>
                                 </constraints>
-                                <state key="normal" title="Show Detail">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
-                                    <action selector="presentDetail:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="alj-LT-gUX"/>
+                                    <segue destination="uov-ev-ObZ" kind="embed" id="FNa-Rd-ouZ"/>
                                 </connections>
-                            </button>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="jGZ-mT-pHR" secondAttribute="centerX" id="5l9-4P-DpN"/>
-                            <constraint firstItem="jGZ-mT-pHR" firstAttribute="top" secondItem="NVp-ae-WkY" secondAttribute="bottom" constant="8" id="NRr-BT-tU1"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="7ow-fB-2Nc" secondAttribute="bottom" constant="32" id="iMy-SM-I8R"/>
-                            <constraint firstItem="NVp-ae-WkY" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="43" id="l4Q-0D-Ps9"/>
-                            <constraint firstAttribute="centerX" secondItem="NVp-ae-WkY" secondAttribute="centerX" constant="-0.5" id="mz7-4t-eVt"/>
-                            <constraint firstItem="jGZ-mT-pHR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="pZ2-zA-5Kf"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jGZ-mT-pHR" secondAttribute="trailing" constant="16" id="uOA-v3-3J3"/>
-                            <constraint firstAttribute="centerX" secondItem="7ow-fB-2Nc" secondAttribute="centerX" id="wgH-aC-YSi"/>
+                            <constraint firstAttribute="trailing" secondItem="xUk-J0-eak" secondAttribute="trailing" id="Kok-Sd-mRk"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xUk-J0-eak" secondAttribute="bottom" id="Njj-Tt-Djl"/>
+                            <constraint firstItem="xUk-J0-eak" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="teL-hR-tAS"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="detailOrientationSwitch" destination="jGZ-mT-pHR" id="a7W-UN-Tcl"/>
-                        <outlet property="presentDetailButton" destination="7ow-fB-2Nc" id="bzc-cb-7Ho"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +69,70 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxV-w8-2cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="977"/>
+            <point key="canvasLocation" x="825" y="136"/>
+        </scene>
+        <!--Master View Controller-->
+        <scene sceneID="zno-Ke-ZC7">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="uov-ev-ObZ" customClass="MasterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k1Y-IM-xw4"/>
+                        <viewControllerLayoutGuide type="bottom" id="4sr-03-uHx"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ZCF-jv-pJJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hZH-U3-9OH">
+                                <rect key="frame" x="16" y="111" width="568" height="29"/>
+                                <segments>
+                                    <segment title="Portrait"/>
+                                    <segment title="Portrait Upside Down"/>
+                                    <segment title="Left Landscape"/>
+                                    <segment title="Right Landscape"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail Orientation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2q-QQ-az3">
+                                <rect key="frame" x="233" y="82" width="133" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aE-Lz-omF">
+                                <rect key="frame" x="225" y="155" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="VLo-az-xlT"/>
+                                    <constraint firstAttribute="width" constant="150" id="pyt-GH-d1d"/>
+                                </constraints>
+                                <state key="normal" title="Show Detail">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="presentDetail:" destination="uov-ev-ObZ" eventType="touchUpInside" id="xCE-D9-0pa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="C2q-QQ-az3" secondAttribute="centerX" id="5Cs-CF-MuR"/>
+                            <constraint firstAttribute="centerX" secondItem="hZH-U3-9OH" secondAttribute="centerX" id="6au-02-P1U"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hZH-U3-9OH" secondAttribute="trailing" constant="16" id="Dgf-ID-H5p"/>
+                            <constraint firstItem="hZH-U3-9OH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZCF-jv-pJJ" secondAttribute="leading" constant="16" id="chQ-UB-ch1"/>
+                            <constraint firstAttribute="centerX" secondItem="2aE-Lz-omF" secondAttribute="centerX" id="dR9-BE-qZr"/>
+                            <constraint firstItem="2aE-Lz-omF" firstAttribute="top" secondItem="hZH-U3-9OH" secondAttribute="bottom" constant="16" id="nJC-Tq-CKO"/>
+                            <constraint firstAttribute="centerY" secondItem="hZH-U3-9OH" secondAttribute="centerY" id="onl-Zn-KJr"/>
+                            <constraint firstItem="hZH-U3-9OH" firstAttribute="top" secondItem="C2q-QQ-az3" secondAttribute="bottom" constant="8" id="yOE-Hb-wtV"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="detailOrientationSwitch" destination="hZH-U3-9OH" id="fiu-3e-GE2"/>
+                        <outlet property="presentDetailButton" destination="2aE-Lz-omF" id="7hi-yz-zsd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mpN-ZT-JKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="665"/>
         </scene>
     </scenes>
 </document>

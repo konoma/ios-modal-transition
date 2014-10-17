@@ -16,7 +16,7 @@
 		0564DEF219F029D1003225DD /* libmodaltransition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0564DEA519F01BC0003225DD /* libmodaltransition.a */; };
 		0564DEF519F02A53003225DD /* KNMModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEED19F02618003225DD /* KNMModalTransition.m */; };
 		0564DEF719F02A6E003225DD /* KNMModalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0564DEEC19F02618003225DD /* KNMModalTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0564DEFA19F02B76003225DD /* SpringTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEF919F02B76003225DD /* SpringTransition.m */; };
+		0564DEFA19F02B76003225DD /* SpanTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564DEF919F02B76003225DD /* SpanTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +44,8 @@
 		0564DEEA19F01DDD003225DD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		0564DEEC19F02618003225DD /* KNMModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNMModalTransition.h; sourceTree = "<group>"; };
 		0564DEED19F02618003225DD /* KNMModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNMModalTransition.m; sourceTree = "<group>"; };
-		0564DEF819F02B76003225DD /* SpringTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringTransition.h; sourceTree = "<group>"; };
-		0564DEF919F02B76003225DD /* SpringTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringTransition.m; sourceTree = "<group>"; };
+		0564DEF819F02B76003225DD /* SpanTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpanTransition.h; sourceTree = "<group>"; };
+		0564DEF919F02B76003225DD /* SpanTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpanTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +104,8 @@
 				0564DECA19F01C93003225DD /* MasterViewController.m */,
 				0564DEE919F01DDD003225DD /* DetailViewController.h */,
 				0564DEEA19F01DDD003225DD /* DetailViewController.m */,
-				0564DEF819F02B76003225DD /* SpringTransition.h */,
-				0564DEF919F02B76003225DD /* SpringTransition.m */,
+				0564DEF819F02B76003225DD /* SpanTransition.h */,
+				0564DEF919F02B76003225DD /* SpanTransition.m */,
 				0564DECF19F01C93003225DD /* Images.xcassets */,
 				0564DEC219F01C93003225DD /* Supporting Files */,
 			);
@@ -233,7 +233,7 @@
 			files = (
 				0564DECB19F01C93003225DD /* MasterViewController.m in Sources */,
 				0564DEC819F01C93003225DD /* AppDelegate.m in Sources */,
-				0564DEFA19F02B76003225DD /* SpringTransition.m in Sources */,
+				0564DEFA19F02B76003225DD /* SpanTransition.m in Sources */,
 				0564DEC519F01C93003225DD /* main.m in Sources */,
 				0564DEEB19F01DDD003225DD /* DetailViewController.m in Sources */,
 			);

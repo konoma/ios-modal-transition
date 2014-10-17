@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 
-#import "SpringTransition.h"
+#import "SpanTransition.h"
 
 
 @implementation MasterViewController
@@ -30,8 +30,8 @@
     DetailViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     controller.preferredInterfaceOrientationForPresentation = [self preferredDetailOrientation];
     
-    SpringTransition *transition = [[SpringTransition alloc] initWithDuration:1.0];
-    transition.initialRect = sender.frame;
+    SpanTransition *transition = [[SpanTransition alloc] initWithDuration:1.0];
+    transition.initialRect = [sender convertRect:sender.bounds toView:sender.window];
     controller.knm_modalTransition = transition;
     
     [self presentViewController:controller animated:YES completion:nil];

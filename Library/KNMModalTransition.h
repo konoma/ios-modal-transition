@@ -20,11 +20,16 @@
 
 // these properties are only valid during the methods below
 @property (nonatomic, readonly) id<UIViewControllerContextTransitioning> transitionContext;
-@property (nonatomic, readonly, weak) UIView *transitionContainerView;
 @property (nonatomic, readonly) UIViewController *presentingViewController;
 @property (nonatomic, readonly) UIViewController *presentedViewController;
 
 @property (nonatomic, readonly, getter = isDismissing) BOOL dismissing;
+
+@property (nonatomic, readonly, weak) UIView *transitionContainerView;
+@property (nonatomic, readonly) CGAffineTransform initialTransform;
+@property (nonatomic, readonly) CGAffineTransform finalTransform;
+@property (nonatomic, readonly) CGPoint finalCenter;
+@property (nonatomic, readonly) CGRect finalBounds;
 
 - (void)prepareForTransition:(BOOL)interactive; // optional, called before animation starts
 - (void)performTransition:(BOOL)interactive; // required, don't call super

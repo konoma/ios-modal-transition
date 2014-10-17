@@ -11,13 +11,26 @@
 #import <objc/runtime.h>
 
 
+#define IS_IOS_7 (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_0)
+
+static CGPoint CenterOfRect(CGRect rect)
+{
+    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+
+
 @interface KNMModalTransition ()
 
 @property (nonatomic, readwrite) id<UIViewControllerContextTransitioning> transitionContext;
-@property (nonatomic, readwrite, weak) UIView *transitionContainerView;
 @property (nonatomic, readwrite) UIViewController *presentingViewController;
 @property (nonatomic, readwrite) UIViewController *presentedViewController;
 @property (nonatomic, readwrite, getter = isDismissing) BOOL dismissing;
+
+@property (nonatomic, readwrite, weak) UIView *transitionContainerView;
+@property (nonatomic, readwrite) CGAffineTransform initialTransform;
+@property (nonatomic, readwrite) CGAffineTransform finalTransform;
+@property (nonatomic, readwrite) CGPoint finalCenter;
+@property (nonatomic, readwrite) CGRect finalBounds;
 
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactionController;
 @property (nonatomic, weak) UIViewController *owningController;
@@ -117,8 +130,10 @@
         self.transitionContainerView = [self transitionContainerViewForContext:transitionContext];
     }
     
-    [self.transitionContainerView addSubview:self.presentingViewController.view];
-    [self.transitionContainerView addSubview:self.presentedViewController.view];
+    [self setupViewControllerTransformsAndFrames];
+    
+//    [self.transitionContainerView addSubview:self.presentingViewController.view];
+//    [self.transitionContainerView addSubview:self.presentedViewController.view];
     
     [self prepareForTransition:[transitionContext isInteractive]];
     
@@ -159,16 +174,48 @@
 
 #pragma mark - Rotation Helpers
 
+- (void)setupViewControllerTransformsAndFrames
+{
+    self.presentedViewController.view.transform = self.presentingViewController.view.transform;
+    
+    self.initialTransform = self.presentingViewController.view.transform;
+    self.finalTransform = CGAffineTransformIdentity;
+    
+    self.finalCenter = CenterOfRect(self.transitionContainerView.bounds);
+    self.finalBounds = self.transitionContainerView.bounds;
+}
+
 - (UIView *)transitionContainerViewForContext:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     UIView *containerView = [transitionContext containerView];
     
-    UIView *transformView = [[UIView alloc] initWithFrame:containerView.bounds];
-    transformView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    UILabel *transformView = [[UILabel alloc] init];
+    
+    transformView.text = @"Transform View";
+    transformView.textAlignment = NSTextAlignmentCenter;
+    
+    transformView.center = CenterOfRect(containerView.bounds);
+    
+    transformView.bounds = self.presentingViewController.view.bounds;
+    transformView.transform = self.presentingViewController.view.transform;
+    
     transformView.layer.borderColor = [UIColor redColor].CGColor;
     transformView.layer.borderWidth = 1.0f;
     [containerView addSubview:transformView];
     return transformView;
+}
+
+- (CGAffineTransform)transformForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:           return CGAffineTransformIdentity;
+        case UIInterfaceOrientationPortraitUpsideDown: return CGAffineTransformMakeRotation(M_PI);
+        case UIInterfaceOrientationLandscapeLeft:      return CGAffineTransformMakeRotation(-M_PI_2);
+        case UIInterfaceOrientationLandscapeRight:     return CGAffineTransformMakeRotation(M_PI_2);
+        
+        default:
+            return CGAffineTransformIdentity;
+    }
 }
 
 @end
