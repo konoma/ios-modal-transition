@@ -166,11 +166,21 @@
     [self.transitionContainerView addSubview:self.presentingViewController.view];
     [self.transitionContainerView addSubview:self.presentedViewController.view];
     
-    self.presentingViewController.view.frame = [self.transitionContext initialFrameForViewController:self.presentingViewController];
-    self.presentedViewController.view.frame = [self.transitionContext initialFrameForViewController:self.presentedViewController];
-    
-    self.initialTransform = self.presentingViewController.view.transform;
-    self.finalTransform = self.presentedViewController.view.transform;
+    if (![self isDismissing]) {
+        self.initialTransform = self.presentingViewController.view.transform;
+        self.finalTransform = self.presentedViewController.view.transform;
+        self.presentingViewController.view.frame = [self.transitionContext initialFrameForViewController:self.presentingViewController];
+    } else {
+        self.initialTransform = self.presentedViewController.view.transform;
+        self.finalTransform = self.presentingViewController.view.transform;
+        self.presentingViewController.view.frame = [self.transitionContext finalFrameForViewController:self.presentingViewController];
+    }
+}
+
+- (CGPoint)initialCenterForViewController:(UIViewController *)viewController
+{
+    CGRect initialFrame = [self.transitionContext initialFrameForViewController:viewController];
+    return CGPointMake(CGRectGetMidX(initialFrame), CGRectGetMidY(initialFrame));
 }
 
 - (CGPoint)finalCenterForViewController:(UIViewController *)viewController
@@ -179,28 +189,20 @@
     return CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
 }
 
+- (CGRect)initialBoundsForViewController:(UIViewController *)viewController
+{
+    CGRect initialFrame = [self.transitionContext finalFrameForViewController:viewController];
+    CGAffineTransform transform = (viewController == self.presentedViewController ? self.initialTransform : self.finalTransform);
+    CGRect rotatedFrame = CGRectApplyAffineTransform(initialFrame, transform);
+    return (CGRect) { .size = rotatedFrame.size };
+}
+
 - (CGRect)finalBoundsForViewController:(UIViewController *)viewController
 {
     CGRect finalFrame = [self.transitionContext finalFrameForViewController:viewController];
     CGAffineTransform transform = (viewController == self.presentingViewController ? self.initialTransform : self.finalTransform);
     CGRect rotatedFrame = CGRectApplyAffineTransform(finalFrame, transform);
     return (CGRect) { .size = rotatedFrame.size };
-}
-
-- (CGRect)convertRect:(CGRect)rect fromView:(UIView *)view
-{
-    UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
-    CGRect windowRect = [window convertRect:rect fromView:view];
-    CGRect screenRect = [window convertRect:windowRect toWindow:nil];
-    return screenRect;
-}
-
-- (CGRect)convertRect:(CGRect)rect toView:(UIView *)view
-{
-    UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
-    CGRect windowRect = [window convertRect:rect fromWindow:nil];
-    CGRect viewRect = [window convertRect:windowRect toView:view];
-    return viewRect;
 }
 
 - (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)view

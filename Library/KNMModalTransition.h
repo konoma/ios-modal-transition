@@ -47,11 +47,11 @@
 @property (nonatomic, readonly) CGAffineTransform initialTransform;
 @property (nonatomic, readonly) CGAffineTransform finalTransform;
 
+- (CGPoint)initialCenterForViewController:(UIViewController *)viewController;
 - (CGPoint)finalCenterForViewController:(UIViewController *)viewController;
-- (CGRect)finalBoundsForViewController:(UIViewController *)viewController;
 
-- (CGRect)convertRect:(CGRect)rect fromView:(UIView *)view;
-- (CGRect)convertRect:(CGRect)rect toView:(UIView *)view;
+- (CGRect)initialBoundsForViewController:(UIViewController *)viewController;
+- (CGRect)finalBoundsForViewController:(UIViewController *)viewController;
 
 - (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)view;
 - (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)view;

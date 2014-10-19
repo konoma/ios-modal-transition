@@ -51,7 +51,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldv-7t-xyk">
-                                <rect key="frame" x="280" y="285" width="40" height="30"/>
+                                <rect key="frame" x="248" y="275" width="104" height="50"/>
+                                <inset key="contentEdgeInsets" minX="32" minY="16" maxX="32" maxY="16"/>
                                 <state key="normal" title="Close">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -66,6 +67,9 @@
                             <constraint firstAttribute="centerY" secondItem="ldv-7t-xyk" secondAttribute="centerY" id="6uq-cb-Ru8"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="closeButton" destination="ldv-7t-xyk" id="BEl-gP-Ufr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxV-w8-2cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,11 +103,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aE-Lz-omF">
-                                <rect key="frame" x="16" y="155" width="150" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="VLo-az-xlT"/>
-                                    <constraint firstAttribute="width" constant="150" id="pyt-GH-d1d"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="155" width="146" height="50"/>
+                                <inset key="contentEdgeInsets" minX="32" minY="16" maxX="32" maxY="16"/>
                                 <state key="normal" title="Show Detail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

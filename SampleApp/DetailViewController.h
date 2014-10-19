@@ -11,6 +11,8 @@
 
 @interface DetailViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIButton *closeButton;
+
 @property (nonatomic, assign) UIInterfaceOrientation preferredInterfaceOrientationForPresentation;
 
 - (IBAction)close:(id)sender;

@@ -28,6 +28,18 @@
 }
 
 
+#pragma mark - View Lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.closeButton.layer.cornerRadius = 3.0f;
+    self.closeButton.layer.borderColor = self.closeButton.tintColor.CGColor;
+    self.closeButton.layer.borderWidth = 1.0f;
+}
+
+
 #pragma mark - Actions
 
 - (void)close:(id)sender

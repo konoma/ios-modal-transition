@@ -31,7 +31,7 @@
     controller.preferredInterfaceOrientationForPresentation = [self preferredDetailOrientation];
     controller.modalPresentationStyle = UIModalPresentationCustom;
     
-    SpanTransition *transition = [[SpanTransition alloc] initWithDuration:5.0];
+    SpanTransition *transition = [[SpanTransition alloc] initWithDuration:1.0];
     transition.initialCenter = [transition convertPoint:sender.center fromView:sender.superview];
     transition.initialBounds = sender.bounds;
     controller.knm_modalTransition = transition;
