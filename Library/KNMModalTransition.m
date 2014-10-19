@@ -11,7 +11,7 @@
 #import <objc/runtime.h>
 
 
-#define IS_IOS_7 (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_0)
+#define IOS_8_OR_LATER (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_0)
 
 
 @interface KNMModalTransition ()
@@ -208,30 +208,60 @@
     UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
     CGPoint windowPoint = [window convertPoint:point fromView:view];
     CGPoint screenPoint = [window convertPoint:windowPoint toWindow:nil];
+    
+    if (IOS_8_OR_LATER) {
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        CGAffineTransform transform = [self transformForInterfaceOrientation:orientation];
+        screenPoint = [self applyTransform:CGAffineTransformInvert(transform) toPoint:screenPoint inRect:window.bounds];
+    }
+    
     return screenPoint;
 }
 
 - (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)view
 {
     UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
+    
+    if (IOS_8_OR_LATER) {
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        CGAffineTransform transform = [self transformForInterfaceOrientation:orientation];
+        point = [self applyTransform:transform toPoint:point inRect:window.bounds];
+    }
+    
     CGPoint windowPoint = [window convertPoint:windowPoint fromWindow:nil];
     CGPoint viewPoint = [window convertPoint:point toView:view];
+    
     return viewPoint;
 }
 
-//- (CGAffineTransform)transformForInterfaceOrientation:(UIInterfaceOrientation)orientation
-//{
-//    switch (orientation) {
-//        case UIInterfaceOrientationPortrait:           return CGAffineTransformIdentity;
-//        case UIInterfaceOrientationPortraitUpsideDown: return CGAffineTransformMakeRotation(M_PI);
-//        case UIInterfaceOrientationLandscapeLeft:      return CGAffineTransformMakeRotation(-M_PI_2);
-//        case UIInterfaceOrientationLandscapeRight:     return CGAffineTransformMakeRotation(M_PI_2);
-//        
-//        default:
-//            return CGAffineTransformIdentity;
-//    }
-//}
+- (CGPoint)applyTransform:(CGAffineTransform)transform toPoint:(CGPoint)point inRect:(CGRect)rect
+{
+    NSParameterAssert(CGPointEqualToPoint(rect.origin, CGPointZero));
+    
+    if (CGAffineTransformEqualToTransform(transform, CGAffineTransformMakeRotation(M_PI))) {
+        return CGPointMake((rect.size.width - point.x), (rect.size.height - point.y));
+    } else if (CGAffineTransformEqualToTransform(transform, CGAffineTransformMakeRotation(M_PI_2))) {
+        return CGPointMake(point.y, (rect.size.width - point.x));
+    } else if (CGAffineTransformEqualToTransform(transform, CGAffineTransformMakeRotation(-M_PI_2))) {
+        return CGPointMake((rect.size.height - point.y), point.x);
+    } else {
+        NSAssert(CGAffineTransformIsIdentity(transform), @"Unsupported transform");
+        return point;
+    }
+}
 
+- (CGAffineTransform)transformForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:           return CGAffineTransformIdentity;
+        case UIInterfaceOrientationPortraitUpsideDown: return CGAffineTransformMakeRotation(M_PI);
+        case UIInterfaceOrientationLandscapeLeft:      return CGAffineTransformMakeRotation(-M_PI_2);
+        case UIInterfaceOrientationLandscapeRight:     return CGAffineTransformMakeRotation(M_PI_2);
+
+        default:
+            return CGAffineTransformIdentity;
+    }
+}
 
 @end
 

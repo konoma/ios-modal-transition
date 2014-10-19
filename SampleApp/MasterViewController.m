@@ -29,6 +29,7 @@
     
     DetailViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     controller.preferredInterfaceOrientationForPresentation = [self preferredDetailOrientation];
+    controller.modalPresentationStyle = UIModalPresentationCustom;
     
     SpanTransition *transition = [[SpanTransition alloc] initWithDuration:5.0];
     transition.initialCenter = [transition convertPoint:sender.center fromView:sender.superview];

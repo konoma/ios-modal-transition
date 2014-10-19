@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -99,7 +99,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aE-Lz-omF">
-                                <rect key="frame" x="225" y="155" width="150" height="50"/>
+                                <rect key="frame" x="16" y="155" width="150" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="VLo-az-xlT"/>
                                     <constraint firstAttribute="width" constant="150" id="pyt-GH-d1d"/>
@@ -117,8 +117,8 @@
                             <constraint firstAttribute="centerX" secondItem="C2q-QQ-az3" secondAttribute="centerX" id="5Cs-CF-MuR"/>
                             <constraint firstAttribute="centerX" secondItem="hZH-U3-9OH" secondAttribute="centerX" id="6au-02-P1U"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hZH-U3-9OH" secondAttribute="trailing" constant="16" id="Dgf-ID-H5p"/>
+                            <constraint firstItem="hZH-U3-9OH" firstAttribute="leading" secondItem="2aE-Lz-omF" secondAttribute="leading" id="RgH-Af-Rjf"/>
                             <constraint firstItem="hZH-U3-9OH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZCF-jv-pJJ" secondAttribute="leading" constant="16" id="chQ-UB-ch1"/>
-                            <constraint firstAttribute="centerX" secondItem="2aE-Lz-omF" secondAttribute="centerX" id="dR9-BE-qZr"/>
                             <constraint firstItem="2aE-Lz-omF" firstAttribute="top" secondItem="hZH-U3-9OH" secondAttribute="bottom" constant="16" id="nJC-Tq-CKO"/>
                             <constraint firstAttribute="centerY" secondItem="hZH-U3-9OH" secondAttribute="centerY" id="onl-Zn-KJr"/>
                             <constraint firstItem="hZH-U3-9OH" firstAttribute="top" secondItem="C2q-QQ-az3" secondAttribute="bottom" constant="8" id="yOE-Hb-wtV"/>
