@@ -13,23 +13,17 @@
 
 #define IS_IOS_7 (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_0)
 
-static CGPoint CenterOfRect(CGRect rect)
-{
-    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-}
-
 
 @interface KNMModalTransition ()
 
 @property (nonatomic, readwrite) id<UIViewControllerContextTransitioning> transitionContext;
+@property (nonatomic, readwrite) UIView *transitionContainerView;
 @property (nonatomic, readwrite) UIViewController *presentingViewController;
 @property (nonatomic, readwrite) UIViewController *presentedViewController;
 @property (nonatomic, readwrite, getter = isDismissing) BOOL dismissing;
 
-@property (nonatomic, readwrite, weak) UIView *transitionContainerView;
+@property (nonatomic, readwrite) CGAffineTransform initialTransform;
 @property (nonatomic, readwrite) CGAffineTransform finalTransform;
-@property (nonatomic, readwrite) CGPoint finalCenter;
-@property (nonatomic, readwrite) CGRect finalBounds;
 
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactionController;
 @property (nonatomic, weak) UIViewController *owningController;
@@ -51,32 +45,6 @@ static CGPoint CenterOfRect(CGRect rect)
 - (instancetype)init
 {
     return [self initWithDuration:0.25];
-}
-
-
-#pragma mark - Performing the Transition
-
-- (void)prepareForTransition:(BOOL)interactive
-{
-}
-
-- (void)performTransition:(BOOL)interactive
-{
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Must be overridden" userInfo:nil];
-}
-
-- (void)finishAnimation:(void(^)(BOOL finished))completion
-{
-    BOOL success = ![self.transitionContext transitionWasCancelled];
-    if (completion != nil) {
-        completion(success);
-    }
-    
-    [self.transitionContext completeTransition:success];
-    
-    self.transitionContext = nil;
-    self.presentingViewController = nil;
-    self.presentedViewController = nil;
 }
 
 
@@ -124,12 +92,9 @@ static CGPoint CenterOfRect(CGRect rect)
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     self.transitionContext = transitionContext;
+    self.transitionContainerView = [transitionContext containerView];
     
-    if (self.transitionContainerView == nil) { // on iOS 8 the containerView is persistent so we don't recreate it
-        self.transitionContainerView = [self transitionContainerViewForContext:transitionContext];
-    }
-    
-    [self setupViewControllerTransformsAndFrames];
+    [self prepareTransitionParameters];
     
     [self prepareForTransition:[transitionContext isInteractive]];
     
@@ -141,25 +106,30 @@ static CGPoint CenterOfRect(CGRect rect)
     }
 }
 
-- (void)setupViewControllerTransformsAndFrames
+
+#pragma mark - Animating the Transition
+
+- (void)prepareForTransition:(BOOL)interactive
 {
-    UIInterfaceOrientation targetOrientation = [self.presentedViewController preferredInterfaceOrientationForPresentation];
-    CGAffineTransform sourceTransform = self.presentingViewController.view.transform;
-    CGAffineTransform targetTransform = [self transformForInterfaceOrientation:targetOrientation];
+}
+
+- (void)performTransition:(BOOL)interactive
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Must be overridden" userInfo:nil];
+}
+
+- (void)finishAnimation:(void(^)(BOOL finished))completion
+{
+    BOOL success = ![self.transitionContext transitionWasCancelled];
+    if (completion != nil) {
+        completion(success);
+    }
     
-    self.finalTransform = CGAffineTransformConcat(CGAffineTransformInvert(sourceTransform), targetTransform);
-    self.finalCenter = CenterOfRect(self.transitionContainerView.bounds);
-    self.finalBounds = self.presentedViewController.view.bounds;
+    [self.transitionContext completeTransition:success];
     
-    self.presentingViewController.view.transform = CGAffineTransformIdentity;
-    self.presentingViewController.view.frame = self.transitionContainerView.bounds;
-    [self.transitionContainerView addSubview:self.presentingViewController.view];
-    
-    self.presentedViewController.view.transform = CGAffineTransformIdentity;
-    self.presentedViewController.view.frame = self.transitionContainerView.bounds;
-    [self.transitionContainerView addSubview:self.presentedViewController.view];
-    
-    self.transitionContainerView.transform = sourceTransform;
+    self.transitionContext = nil;
+    self.presentingViewController = nil;
+    self.presentedViewController = nil;
 }
 
 
@@ -191,34 +161,82 @@ static CGPoint CenterOfRect(CGRect rect)
 
 #pragma mark - Rotation Helpers
 
-- (UIView *)transitionContainerViewForContext:(id<UIViewControllerContextTransitioning>)transitionContext
+- (void)prepareTransitionParameters
 {
-    UIView *containerView = [transitionContext containerView];
+    [self.transitionContainerView addSubview:self.presentingViewController.view];
+    [self.transitionContainerView addSubview:self.presentedViewController.view];
     
-    UIView *transformView = [[UIView alloc] init];
-    transformView.center = CenterOfRect(containerView.bounds);
-    transformView.bounds = self.presentingViewController.view.bounds;
-    transformView.layer.borderColor = [UIColor redColor].CGColor;
-    transformView.layer.borderWidth = 1.0f;
-    [containerView addSubview:transformView];
-    return transformView;
+    self.presentingViewController.view.frame = [self.transitionContext initialFrameForViewController:self.presentingViewController];
+    self.presentedViewController.view.frame = [self.transitionContext initialFrameForViewController:self.presentedViewController];
+    
+    self.initialTransform = self.presentingViewController.view.transform;
+    self.finalTransform = self.presentedViewController.view.transform;
 }
 
-- (CGAffineTransform)transformForInterfaceOrientation:(UIInterfaceOrientation)orientation
+- (CGPoint)finalCenterForViewController:(UIViewController *)viewController
 {
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait:           return CGAffineTransformIdentity;
-        case UIInterfaceOrientationPortraitUpsideDown: return CGAffineTransformMakeRotation(M_PI);
-        case UIInterfaceOrientationLandscapeLeft:      return CGAffineTransformMakeRotation(-M_PI_2);
-        case UIInterfaceOrientationLandscapeRight:     return CGAffineTransformMakeRotation(M_PI_2);
-        
-        default:
-            return CGAffineTransformIdentity;
-    }
+    CGRect finalFrame = [self.transitionContext finalFrameForViewController:viewController];
+    return CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
 }
+
+- (CGRect)finalBoundsForViewController:(UIViewController *)viewController
+{
+    CGRect finalFrame = [self.transitionContext finalFrameForViewController:viewController];
+    CGAffineTransform transform = (viewController == self.presentingViewController ? self.initialTransform : self.finalTransform);
+    CGRect rotatedFrame = CGRectApplyAffineTransform(finalFrame, transform);
+    return (CGRect) { .size = rotatedFrame.size };
+}
+
+- (CGRect)convertRect:(CGRect)rect fromView:(UIView *)view
+{
+    UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
+    CGRect windowRect = [window convertRect:rect fromView:view];
+    CGRect screenRect = [window convertRect:windowRect toWindow:nil];
+    return screenRect;
+}
+
+- (CGRect)convertRect:(CGRect)rect toView:(UIView *)view
+{
+    UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
+    CGRect windowRect = [window convertRect:rect fromWindow:nil];
+    CGRect viewRect = [window convertRect:windowRect toView:view];
+    return viewRect;
+}
+
+- (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)view
+{
+    UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
+    CGPoint windowPoint = [window convertPoint:point fromView:view];
+    CGPoint screenPoint = [window convertPoint:windowPoint toWindow:nil];
+    return screenPoint;
+}
+
+- (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)view
+{
+    UIWindow *window = ([view isKindOfClass:[UIWindow class]] ? (UIWindow *)view : view.window);
+    CGPoint windowPoint = [window convertPoint:windowPoint fromWindow:nil];
+    CGPoint viewPoint = [window convertPoint:point toView:view];
+    return viewPoint;
+}
+
+//- (CGAffineTransform)transformForInterfaceOrientation:(UIInterfaceOrientation)orientation
+//{
+//    switch (orientation) {
+//        case UIInterfaceOrientationPortrait:           return CGAffineTransformIdentity;
+//        case UIInterfaceOrientationPortraitUpsideDown: return CGAffineTransformMakeRotation(M_PI);
+//        case UIInterfaceOrientationLandscapeLeft:      return CGAffineTransformMakeRotation(-M_PI_2);
+//        case UIInterfaceOrientationLandscapeRight:     return CGAffineTransformMakeRotation(M_PI_2);
+//        
+//        default:
+//            return CGAffineTransformIdentity;
+//    }
+//}
+
 
 @end
 
+
+#pragma mark - UIViewController Additions
 
 @implementation UIViewController (STKModalTransition)
 

@@ -16,19 +16,18 @@
 @property (nonatomic, readonly) NSTimeInterval duration;
 
 
-#pragma mark - Subclassing Hooks
+#pragma mark - Transition Parameters
 
-// these properties are only valid during the methods below
+// these properties are only valid during the transition
 @property (nonatomic, readonly) id<UIViewControllerContextTransitioning> transitionContext;
+@property (nonatomic, readonly) UIView *transitionContainerView;
 @property (nonatomic, readonly) UIViewController *presentingViewController;
 @property (nonatomic, readonly) UIViewController *presentedViewController;
 
 @property (nonatomic, readonly, getter = isDismissing) BOOL dismissing;
 
-@property (nonatomic, readonly, weak) UIView *transitionContainerView;
-@property (nonatomic, readonly) CGAffineTransform finalTransform;
-@property (nonatomic, readonly) CGPoint finalCenter;
-@property (nonatomic, readonly) CGRect finalBounds;
+
+#pragma mark - Animating the Transition
 
 - (void)prepareForTransition:(BOOL)interactive; // optional, called before animation starts
 - (void)performTransition:(BOOL)interactive; // required, don't call super
@@ -41,6 +40,21 @@
 - (void)updateInteractiveTransitionToProgress:(CGFloat)progress;
 - (void)cancelInteractiveTransition;
 - (void)finishInteractiveTransition;
+
+
+#pragma mark - Rotation Helpers
+
+@property (nonatomic, readonly) CGAffineTransform initialTransform;
+@property (nonatomic, readonly) CGAffineTransform finalTransform;
+
+- (CGPoint)finalCenterForViewController:(UIViewController *)viewController;
+- (CGRect)finalBoundsForViewController:(UIViewController *)viewController;
+
+- (CGRect)convertRect:(CGRect)rect fromView:(UIView *)view;
+- (CGRect)convertRect:(CGRect)rect toView:(UIView *)view;
+
+- (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)view;
+- (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)view;
 
 @end
 

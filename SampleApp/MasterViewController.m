@@ -30,8 +30,9 @@
     DetailViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     controller.preferredInterfaceOrientationForPresentation = [self preferredDetailOrientation];
     
-    SpanTransition *transition = [[SpanTransition alloc] initWithDuration:1.0];
-    transition.initialRect = [sender convertRect:sender.bounds toView:sender.window];
+    SpanTransition *transition = [[SpanTransition alloc] initWithDuration:5.0];
+    transition.initialCenter = [transition convertPoint:sender.center fromView:sender.superview];
+    transition.initialBounds = sender.bounds;
     controller.knm_modalTransition = transition;
     
     [self presentViewController:controller animated:YES completion:nil];

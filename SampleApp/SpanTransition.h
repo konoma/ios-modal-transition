@@ -11,6 +11,7 @@
 
 @interface SpanTransition : KNMModalTransition
 
-@property (nonatomic, assign) CGRect initialRect;
+@property (nonatomic, assign) CGPoint initialCenter;
+@property (nonatomic, assign) CGRect initialBounds;
 
 @end
