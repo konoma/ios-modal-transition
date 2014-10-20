@@ -227,7 +227,13 @@
     if (IOS_8_OR_LATER) {
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
         CGAffineTransform transform = [self transformForInterfaceOrientation:orientation];
-        point = [self applyTransform:transform toPoint:point inRect:window.bounds];
+        CGRect bounds = window.bounds;
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
+            // in landscape the window bounds are changed in iOS 8
+            // we expect portrait bounds
+            bounds.size = CGSizeMake(bounds.size.height, bounds.size.width);
+        }
+        point = [self applyTransform:transform toPoint:point inRect:bounds];
     }
     
     CGPoint windowPoint = [window convertPoint:windowPoint fromWindow:nil];
