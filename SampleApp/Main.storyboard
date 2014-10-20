@@ -37,6 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="172" y="136"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="orc-CJ-PV8">
@@ -62,16 +63,25 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="ldv-7t-xyk" secondAttribute="centerX" id="6YT-3S-Ppz"/>
                             <constraint firstAttribute="centerY" secondItem="ldv-7t-xyk" secondAttribute="centerY" id="6uq-cb-Ru8"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="F7e-3Q-HMw" appends="YES" id="tHY-fC-skj"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="ldv-7t-xyk" id="BEl-gP-Ufr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxV-w8-2cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="F7e-3Q-HMw">
+                    <connections>
+                        <action selector="interactiveClose:" destination="WLd-Zb-FZi" id="ExP-xQ-SBL"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="825" y="136"/>
         </scene>
@@ -133,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpN-ZT-JKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="665"/>
+            <point key="canvasLocation" x="172" y="668"/>
         </scene>
     </scenes>
 </document>

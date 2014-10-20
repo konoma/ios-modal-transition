@@ -148,6 +148,7 @@
 
 - (void)cancelInteractiveTransition
 {
+    self.interactionController.completionSpeed = 0.999f; // http://stackoverflow.com/a/22968139/188461
     [self.interactionController cancelInteractiveTransition];
     self.interactionController = nil;
 }
