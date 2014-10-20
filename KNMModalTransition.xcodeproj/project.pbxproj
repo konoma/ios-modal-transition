@@ -395,6 +395,7 @@
 				0564DEB819F01BC0003225DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0564DEE019F01C93003225DD /* Build configuration list for PBXNativeTarget "SampleApp" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +404,7 @@
 				0564DEE219F01C93003225DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

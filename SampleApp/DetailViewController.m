@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 
+#import "KNMModalTransition.h"
+
 
 @implementation DetailViewController
 
@@ -45,6 +47,34 @@
 - (void)close:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)interactiveClose:(UIPinchGestureRecognizer *)recognizer
+{
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            [self.knm_modalTransition beginInteractiveDismissalTransition:nil];
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+            [self.knm_modalTransition updateInteractiveTransitionToProgress:(1.0f - recognizer.scale)];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            if (recognizer.velocity <= 0.0f) {
+                [self.knm_modalTransition finishInteractiveTransition];
+            } else {
+                [self.knm_modalTransition cancelInteractiveTransition];
+            }
+            break;
+        
+        case UIGestureRecognizerStateCancelled:
+            [self.knm_modalTransition cancelInteractiveTransition];
+            break;
+        
+        default:
+            break;
+    }
 }
 
 @end

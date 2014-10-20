@@ -16,5 +16,6 @@
 @property (nonatomic, assign) UIInterfaceOrientation preferredInterfaceOrientationForPresentation;
 
 - (IBAction)close:(id)sender;
+- (IBAction)interactiveClose:(UIPinchGestureRecognizer *)recognizer;
 
 @end

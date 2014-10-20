@@ -163,14 +163,15 @@
 
 - (void)prepareTransitionParameters
 {
-    [self.transitionContainerView addSubview:self.presentingViewController.view];
-    [self.transitionContainerView addSubview:self.presentedViewController.view];
-    
     if (![self isDismissing]) {
+        [self.transitionContainerView addSubview:self.presentedViewController.view];
+        
         self.initialTransform = self.presentingViewController.view.transform;
         self.finalTransform = self.presentedViewController.view.transform;
         self.presentingViewController.view.frame = [self.transitionContext initialFrameForViewController:self.presentingViewController];
     } else {
+        [self.transitionContainerView insertSubview:self.presentingViewController.view atIndex:0];
+        
         self.initialTransform = self.presentedViewController.view.transform;
         self.finalTransform = self.presentingViewController.view.transform;
         self.presentingViewController.view.frame = [self.transitionContext finalFrameForViewController:self.presentingViewController];
