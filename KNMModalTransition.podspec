@@ -1,11 +1,12 @@
 Pod::Spec.new do |s|
   s.name         = "KNMModalTransition"
   s.version      = "0.1.0"
-  s.summary      = "A modal transition base class that abstracts the differences between iOS 7 and 8, as well as different orientations."
+  s.summary      = "A base class that provides an abstraction over UIViewControllerTransitioningDelegate and UIViewControllerAnimatedTransitioning."
   s.description  = <<-DESC
-                   This class abstracts the differences between iOS 7 and iOS 8, as
-                   well as between different interface orientations when using
-                   custom animated modal transitions. 
+                   KNMModalTransition is a modal transition base class that provides some
+                   abstractions over `UIViewControllerTransitioningDelegate` and
+                   `UIViewControllerAnimatedTransitioning`. Also contains some helpers
+                   to deal with orientation changes.
                    DESC
   s.homepage     = "https://github.com/konoma/ios-modal-transition"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
